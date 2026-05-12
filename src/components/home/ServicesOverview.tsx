@@ -1,9 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Bot, Layers, Cpu, Radio, Network, Code, ArrowRight, GraduationCap,
-  HeartPulse, BookOpen, Factory, ShoppingCart, Activity, Rocket 
-} from 'lucide-react';
+import {
+  Bot,
+  Cpu,
+  Radio,
+  Network,
+  Code,
+  ArrowRight,
+  GraduationCap,
+  BookOpen,
+  Factory,
+  Activity,
+  Rocket
+} from "lucide-react";
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
