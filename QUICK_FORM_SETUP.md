@@ -146,7 +146,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       <option>Embedded & IoT</option>
       <option>Robotics Solutions</option>
       <option>LabVIEW Automation</option>
-      <option>Academic Projects</option>
+      <option>Academic Solutions</option>
       <option>Web Development</option>
       <option>Custom Development</option>
     </select>
@@ -297,6 +297,10 @@ export const MyInquiryForm: React.FC = () => {
           <option>ERP Systems</option>
           <option>Embedded & IoT</option>
           <option>Robotics Solutions</option>
+          <option>LabVIEW Automation</option>
+          <option>Academic Solutions</option>
+          <option>Web Development</option>
+          <option>Custom Development</option>
         </select>
       </div>
 

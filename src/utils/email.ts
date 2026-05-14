@@ -9,11 +9,17 @@ export const SUCCESS_MESSAGE =
 export const SERVICE_OPTIONS = [
   'Academic Project',
   'AI Automation',
-  'ERP Systems',
-  'Embedded Systems',
-  'LabVIEW Automation',
-  'IoT Solutions',
   'Web Development',
+  'Embedded Systems',
+  'IoT Solutions',
+  'WhatsApp Automation',
+  'ERP Systems',
+  'Robotics',
+  'Portfolio Websites',
+  'Business Websites',
+  'Cloud Solutions',
+  'PCB Design',
+  'LabVIEW Automation',
 ] as const;
 
 export const PROJECT_TYPE_OPTIONS = [
@@ -23,8 +29,12 @@ export const PROJECT_TYPE_OPTIONS = [
   'AI/ML Project',
   'IoT Solution',
   'Embedded Hardware Integration',
+  'WhatsApp Automation',
+  'ERP System',
+  'Robotics Project',
   'LabVIEW Automation',
   'Web Application',
+  'Website + AI + Dashboard',
   'Custom Development',
 ] as const;
 

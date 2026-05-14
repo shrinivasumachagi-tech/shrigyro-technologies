@@ -131,7 +131,7 @@ Complete EmailJS integration is configured for ShriGyro Technologies website. Al
                 <li>ERP Systems Development</li>
                 <li>Embedded Systems & IoT</li>
                 <li>LabVIEW Automation</li>
-                <li>Academic Project Development</li>
+                <li>Academic Solutions</li>
             </ul>
 
             <p>If you have any urgent questions, feel free to reach out:</p>
@@ -262,7 +262,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
   - Embedded & IoT
   - Robotics Solutions
   - LabVIEW Automation
-  - Academic Projects
+  - Academic Solutions
   - Web Development
   - Custom Development
 - **Project Type** (Optional)

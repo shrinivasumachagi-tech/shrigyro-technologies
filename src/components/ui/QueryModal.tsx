@@ -61,18 +61,8 @@ const QueryModal: React.FC = () => {
 
     window.addEventListener('openQueryModal', handleOpen);
 
-    const hasSeenModal = localStorage.getItem('hasSeenQueryModal');
-    let timer: number | undefined;
-
-    if (!hasSeenModal) {
-      timer = window.setTimeout(() => openModal(), 3000);
-    }
-
     return () => {
       window.removeEventListener('openQueryModal', handleOpen);
-      if (timer) {
-        window.clearTimeout(timer);
-      }
     };
   }, []);
 
@@ -116,7 +106,7 @@ const QueryModal: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="absolute inset-0 bg-deep-navy/80 backdrop-blur-md"
+            className="absolute inset-0 bg-slate-950/55 backdrop-blur-md dark:bg-deep-navy/80"
           />
 
           <motion.div

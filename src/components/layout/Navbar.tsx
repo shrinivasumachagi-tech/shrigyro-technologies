@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, ChevronRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, ChevronRight, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@/context/ThemeContext';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
+import { serviceLinks } from '@/data/serviceDetails';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -18,6 +19,7 @@ const navLinks = [
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -50,15 +52,63 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-electric-blue dark:hover:text-cyan transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (link.name === 'Services') {
+              return (
+                <div
+                  key={link.name}
+                  className="relative"
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                >
+                  <Link
+                    to={link.href}
+                    className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-electric-blue dark:hover:text-cyan transition-colors"
+                    onFocus={() => setIsServicesOpen(true)}
+                  >
+                    Services
+                    <ChevronDown size={16} className={cn('transition-transform', isServicesOpen && 'rotate-180')} />
+                  </Link>
+
+                  <AnimatePresence>
+                    {isServicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute left-1/2 top-full mt-4 w-[560px] -translate-x-1/2 rounded-2xl border border-gray-200/80 bg-white/95 p-4 shadow-2xl shadow-blue-900/10 backdrop-blur-xl dark:border-white/10 dark:bg-deep-navy/95"
+                      >
+                        <div className="grid grid-cols-2 gap-2">
+                          {serviceLinks.map((service) => (
+                            <Link
+                              key={service.href}
+                              to={service.href}
+                              className="group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition-all hover:bg-blue-50 hover:text-electric-blue dark:text-gray-200 dark:hover:bg-white/5 dark:hover:text-cyan"
+                              onClick={() => setIsServicesOpen(false)}
+                            >
+                              {service.name}
+                              <ChevronRight size={15} className="opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-electric-blue dark:hover:text-cyan transition-colors"
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Actions */}
@@ -118,15 +168,30 @@ const Navbar: React.FC = () => {
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 text-gray-900 dark:text-white font-medium"
-                >
-                  {link.name}
-                  <ChevronRight size={18} className="text-gray-400" />
-                </Link>
+                <div key={link.name}>
+                  <Link
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 text-gray-900 dark:text-white font-medium"
+                  >
+                    {link.name}
+                    <ChevronRight size={18} className="text-gray-400" />
+                  </Link>
+                  {link.name === 'Services' && (
+                    <div className="ml-3 mt-2 grid grid-cols-1 gap-1 border-l border-gray-200 pl-3 dark:border-white/10">
+                      {serviceLinks.map((service) => (
+                        <Link
+                          key={service.href}
+                          to={service.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-electric-blue dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-cyan"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <div className="pt-4">
                 <Button 

@@ -1,169 +1,135 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Code, Cpu, Globe,
-  FileText, MessageSquare, CheckCircle,
-  Package, FileCheck, Book, HardDrive, 
-  Hospital, Zap, Bot, Layers, Smartphone, Gauge, Shield, Brain
+import {
+  Code, Cpu, Globe, FileText, MessageSquare, FileCheck, HardDrive, Zap, Bot, Layers, Terminal, Users, Play, Brain, Gauge
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
-
 const AcademicProjectSolutions: React.FC = () => {
-  const services = [
-    'Full Project Development', 'Source Code & Database', 'Frontend + Backend Development',
-    'Modern UI/UX Design', 'Testing & Debugging', 'Deployment Support', 'Hardware Integration Support'
+  const projectTypes = [
+    { name: 'Embedded Systems', icon: Cpu },
+    { name: 'IoT Projects', icon: Globe },
+    { name: 'AI/ML Projects', icon: Brain },
+    { name: 'Robotics Projects', icon: Bot },
+    { name: 'Web Applications', icon: Layers },
+    { name: 'Final Year Projects', icon: Terminal },
+    { name: 'Mini Projects', icon: Zap },
+    { name: 'IEEE Projects', icon: FileCheck },
+    { name: 'Internship Projects', icon: Users }
   ];
 
-  const docs = [
-    'Complete Project Report', 'Synopsis Preparation', 'Abstract & Documentation',
-    'Flowcharts / UML Diagrams', 'PPT Presentation', 'Viva Questions & Demo Support'
-  ];
-
-  const delivery = [
-    { title: 'Soft Copy (PDF + DOC)', icon: FileCheck },
-    { title: 'Hard Copy Printed Report', icon: Book },
-    { title: 'Spiral / Hard Binding', icon: Package },
-    { title: 'Final Ready-to-Submit Project Kit', icon: HardDrive }
-  ];
-
-  const domains = [
-    { name: 'AI Chatbots', icon: MessageSquare },
-    { name: 'ERP Systems', icon: Layers },
-    { name: 'Smart Attendance Systems', icon: Shield },
-    { name: 'IoT Automation', icon: Globe },
-    { name: 'Hospital/College Systems', icon: Hospital },
-    { name: 'Embedded & IoT Projects', icon: Cpu },
-    { name: 'LabVIEW Automation Projects', icon: Gauge },
-    { name: 'Web & Mobile Applications', icon: Smartphone },
-    { name: 'AI & Automation Projects', icon: Brain },
-    { name: 'Robotics Projects', icon: Bot }
+  const supportSubsections = [
+    { title: 'Full Documentation', icon: FileText, desc: 'Project report, abstract, diagrams, module explanation, and implementation details.' },
+    { title: 'PPT Preparation', icon: MessageSquare, desc: 'Clean presentation decks for reviews, demos, and final evaluation.' },
+    { title: 'Source Code', icon: Code, desc: 'Organized source code with clear logic and explanation support.' },
+    { title: 'Deployment Support', icon: Play, desc: 'Website, dashboard, cloud, or demo deployment assistance based on project scope.' },
+    { title: 'Hardware Support', icon: HardDrive, desc: 'Component selection, wiring guidance, testing, and troubleshooting support.' },
+    { title: 'Viva Preparation', icon: Users, desc: 'Expert guidance on frequently asked technical questions.' }
   ];
 
   return (
-    <section id="academic-projects" className="py-24 relative overflow-hidden bg-deep-navy">
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+    <section id="academic-projects" className="py-24 relative overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-500">
+      {/* Background Gradients - Adjusted for Light/Dark visibility */}
+      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.1] pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-electric-blue rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan rounded-full blur-[150px]" />
       </div>
 
       <Container className="relative z-10">
         <SectionHeading
-          title="Academic Project Solutions"
-          subtitle="Empowering the next generation of engineers with industry-grade project development. We bridge the academic-industrial gap by delivering production-ready source code, rigorous hardware integration, and comprehensive architectural documentation required for top-tier university submissions."
+          title="Professional Academic Project Solutions"
+          subtitle="ShriGyro Technologies bridges the gap between theoretical classroom learning and real-world industrial application. We provide a premium, high-tech engineering environment where students can build, test, and deploy production-ready solutions for their final year milestones and research papers."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Left Column: Services & Documentation */}
-          <div className="space-y-12">
-            <div>
-              <h3 className="text-xl font-bold font-sora text-white mb-6 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-electric-blue/10 text-electric-blue">
-                  <Code size={20} />
-                </div>
-                Services Included
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {services.map((item, i) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3 glass p-4 rounded-xl border-white/5 hover:border-electric-blue/30 transition-all group"
-                  >
-                    <CheckCircle size={16} className="text-cyan group-hover:scale-110 transition-transform" />
-                    <span className="text-sm text-gray-300 font-medium">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+        {/* Expanded Description Block */}
+        <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600 dark:text-gray-300">
+          <p className="leading-relaxed">
+            We understand that academic projects are the first step toward a professional career. Our team provides end-to-end guidance, ensuring that every student understands the architecture, the code logic, and the hardware integration. Whether you are working on a complex AI model or an IoT-based automation system, we help you deliver excellence.
+          </p>
+          <p className="leading-relaxed">
+            Our delivery model follows industrial R&D standards. This means you don't just get a working project; you get a complete package including clean source code, professional documentation, simulation files, and viva preparation support. We focus on making you technically confident for your project reviews.
+          </p>
+        </div>
 
-            <div>
-              <h3 className="text-xl font-bold font-sora text-white mb-6 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-500">
-                  <FileText size={20} />
-                </div>
-                Documentation & Reporting
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {docs.map((item, i) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3 glass p-4 rounded-xl border-white/5 hover:border-purple-500/30 transition-all group"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500 group-hover:scale-150 transition-transform" />
-                    <span className="text-sm text-gray-300 font-medium">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
+        <div className="mb-16 p-10 rounded-[2.5rem] bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-2xl shadow-blue-600/20 text-center relative overflow-hidden group">
+          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <p className="text-3xl font-black font-sora mb-2">Build Your Future with ShriGyro</p>
+          <p className="text-blue-100 max-w-2xl mx-auto text-lg">Over 500+ successful project deliveries across Embedded, Web, and AI domains for students worldwide.</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+          {/* Left: Project Categories */}
+          <div className="glass p-8 rounded-[2.5rem] border-gray-200 dark:border-white/10 shadow-xl bg-white/60 dark:bg-white/5">
+            <h3 className="text-2xl font-bold font-sora text-gray-900 dark:text-white mb-8">Specialized Domains</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {projectTypes.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-electric-blue/50 transition-all group"
+                >
+                  <div className="p-2 rounded-lg bg-electric-blue/10 text-electric-blue group-hover:scale-110 transition-transform">
+                    <item.icon size={20} />
+                  </div>
+                  <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{item.name}</span>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          {/* Right Column: Delivery & Domains */}
-          <div className="space-y-12">
-             <div>
-              <h3 className="text-xl font-bold font-sora text-white mb-6 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-green-500/10 text-green-500">
-                  <Package size={20} />
-                </div>
-                Project Delivery
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {delivery.map((item, i) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex flex-col gap-3 glass p-6 rounded-2xl border-white/5 hover:border-green-500/30 transition-all group"
-                  >
-                    <item.icon size={24} className="text-green-500 group-hover:scale-110 transition-transform" />
-                    <span className="text-sm text-gray-300 font-bold font-sora leading-tight">{item.title}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          {/* Right: Support Services */}
+          <div className="space-y-6">
+            <h3 className="text-3xl font-bold font-sora text-gray-900 dark:text-white mb-2">Professional Project Lifecycle</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">We ensure your documentation, code, and presentation meet the highest university and industry standards.</p>
 
-            <div>
-               <h3 className="text-xl font-bold font-sora text-white mb-6 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-orange-500/10 text-orange-500">
-                  <Zap size={20} />
-                </div>
-                Project Domains
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {domains.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.02 }}
-                    className="flex items-center gap-2 px-4 py-2 glass rounded-full border-white/5 hover:border-orange-500/30 hover:bg-orange-500/5 transition-all cursor-pointer group"
-                  >
-                    <item.icon size={14} className="text-orange-500 group-hover:rotate-12 transition-transform" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">{item.name}</span>
-                  </motion.div>
-                ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+              {supportSubsections.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-start gap-4 p-5 glass rounded-2xl border-gray-200 dark:border-white/5 hover:border-blue-500/40 transition-all hover:shadow-lg group/item"
+                >
+                  <div className="p-3 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover/item:scale-110 transition-transform">
+                    <item.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-1">{item.title}</h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-snug">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* LabVIEW Highlight */}
+        <div className="grid grid-cols-1 gap-8 mb-20">
+          <div className="glass p-10 rounded-[3rem] border-cyan/20 bg-gradient-to-br from-cyan/5 to-blue-500/5">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="p-6 rounded-full bg-cyan/10 text-cyan">
+                <Gauge size={64} />
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-3xl font-black font-sora text-gray-900 dark:text-white mb-4">LabVIEW Automation Excellence</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
+                  Our specialized LabVIEW division focuses on complex industrial monitoring and instrumentation. We provide data acquisition (DAQ), real-time control systems, and high-fidelity virtual instruments. Ideal for both advanced academic research and commercial industrial prototyping.
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Pricing Summary (Integrated) */}
+        {/* Final CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="glass p-10 rounded-[3rem] border-electric-blue/20 bg-gradient-to-r from-electric-blue/5 to-cyan/5 text-center"
         >
-          <h4 className="text-2xl font-bold font-sora text-white mb-4">Accelerate Your Engineering Journey</h4>
-          <p className="text-gray-400 mb-8 max-w-3xl mx-auto font-inter leading-relaxed">
-            From initial research and architecture planning to final code compilation and hardware deployment, our dedicated engineering team ensures your project is flawless. Get enterprise-grade guidance and support for your final year submissions, with completely transparent packages tailored to your specific technical requirements.
+          <h4 className="text-2xl font-bold font-sora text-gray-900 dark:text-white mb-4">Accelerate Your Engineering Journey</h4>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto font-inter leading-relaxed">
+            From initial research and architecture planning to final code compilation and hardware deployment, our dedicated engineering team ensures your project is flawless. Get professional guidance for your final year submissions with transparent packages.
           </p>
-          <button 
+          <button
             onClick={() =>
               window.dispatchEvent(
                 new CustomEvent('openQueryModal', {

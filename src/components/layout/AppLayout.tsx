@@ -3,14 +3,16 @@ import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import QueryModal from '../ui/QueryModal';
+import { cn } from '@/utils/cn';
 
 interface AppLayoutProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+const AppLayout: React.FC<AppLayoutProps> = ({ children, className }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={cn('min-h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300 dark:bg-deep-navy dark:text-white', className)}>
       <Navbar />
       <QueryModal />
       <motion.main

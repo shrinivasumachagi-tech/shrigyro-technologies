@@ -6,83 +6,103 @@ import {
   Code2, 
   Bug, 
   FileText, 
-  Rocket 
+  Rocket,
+  MessageSquare,
+  Headphones,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 const steps = [
   {
-    title: 'Requirement Analysis & Strategy',
-    description: 'We initiate every engagement with a comprehensive discovery phase. Our engineers collaborate with your team to deeply understand core objectives, assess technology stack feasibility, and define a scalable architecture roadmap.',
-    icon: FileSearch,
-    details: ['In-depth requirement gathering', 'Technology stack consulting', 'Domain & feasibility analysis'],
+    title: 'Requirement Discussion',
+    description: 'We begin with a clear discussion about your business goal, academic requirement, expected features, budget, timeline, and final output. This helps us understand the real problem before choosing the technology.',
+    icon: MessageSquare,
+    details: ['Goal and scope discussion', 'Feature list preparation', 'Budget and timeline clarity'],
     color: 'text-blue-500',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20'
   },
   {
-    title: 'Architectural Planning',
-    description: 'Before writing a single line of code, we design robust system blueprints. We map out database schemas, API topologies, hardware interfaces, and create high-fidelity UI/UX wireframes to guarantee alignment.',
-    icon: PenTool,
-    details: ['System architecture blueprints', 'Database & API design', 'UI/UX wireframing'],
+    title: 'Planning & Architecture',
+    description: 'We plan the system structure, modules, database, hardware connections, APIs, and delivery stages. This step gives every project a strong technical direction before development starts.',
+    icon: FileSearch,
+    details: ['System architecture', 'Module planning', 'Technology stack selection'],
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20'
   },
   {
-    title: 'Agile Engineering',
-    description: 'Our core development phase merges precision engineering with agile methodologies. We build clean, modular, and highly scalable code across frontend interfaces, backend microservices, and custom hardware logic.',
-    icon: Code2,
-    details: ['Frontend & Backend coding', 'Custom hardware integration', 'AI & Machine Learning logic'],
+    title: 'UI/UX & System Design',
+    description: 'For websites, dashboards, and apps, we design simple and modern interfaces. For hardware systems, we prepare circuit flow, control logic, data flow, and demo structure.',
+    icon: PenTool,
+    details: ['Responsive UI planning', 'Hardware and data flow', 'User journey design'],
     color: 'text-electric-blue',
     bg: 'bg-electric-blue/10',
     border: 'border-electric-blue/20'
   },
   {
-    title: 'Rigorous QA & Testing',
-    description: 'Quality is non-negotiable. We subject the system to exhaustive testing protocols including unit tests, UI/UX audits, security vulnerability checks, and high-load performance optimization.',
-    icon: Bug,
-    details: ['Automated functional testing', 'Security & load testing', 'UI/UX responsiveness checks'],
+    title: 'Development Phase',
+    description: 'We build the project with clean code, practical hardware logic, API integrations, automation flows, and clear module separation. Progress is shared in stages when the project scope requires it.',
+    icon: Code2,
+    details: ['Frontend and backend coding', 'Firmware or AI logic', 'API and database integration'],
     color: 'text-orange-500',
     bg: 'bg-orange-500/10',
     border: 'border-orange-500/20'
   },
   {
-    title: 'Enterprise Documentation',
-    description: 'We deliver comprehensive, industry-standard documentation. For enterprise clients, this means full API references and deployment guides; for academia, it includes IEEE-format reports and abstract synopses.',
-    icon: FileText,
-    details: ['Technical & API documentation', 'IEEE format reports & PPTs', 'UML system diagrams'],
+    title: 'Testing & Debugging',
+    description: 'We test the project for errors, responsiveness, hardware stability, data accuracy, and demo readiness. Bugs are fixed before final delivery so the solution is usable and reliable.',
+    icon: Bug,
+    details: ['Functional testing', 'Responsive and hardware checks', 'Bug fixing and refinement'],
     color: 'text-emerald-500',
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/20'
   },
   {
-    title: 'Deployment & Handover',
-    description: 'The final phase involves seamless deployment to your production environment or secure cloud infrastructure. We provide full source code handover, hardware setup support, and comprehensive training.',
-    icon: Rocket,
-    details: ['Cloud server deployment', 'Full source code handover', 'Post-deployment support'],
+    title: 'Documentation',
+    description: 'We prepare technical documentation based on the project type. Academic projects can include report, PPT, diagrams, abstract, implementation details, and viva guidance.',
+    icon: FileText,
+    details: ['Project report', 'PPT and diagrams', 'Code and module explanation'],
     color: 'text-cyan',
     bg: 'bg-cyan/10',
     border: 'border-cyan/20'
+  },
+  {
+    title: 'Deployment',
+    description: 'For websites, dashboards, cloud systems, and IoT panels, we deploy the project and verify the live flow. For hardware projects, we prepare demo setup and working instructions.',
+    icon: Rocket,
+    details: ['Cloud or Netlify deployment', 'Hardware demo setup', 'Final delivery checklist'],
+    color: 'text-rose-500',
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20'
+  },
+  {
+    title: 'Client Support',
+    description: 'After delivery, we provide support based on the selected package. We help with small fixes, explanation, handover, and guidance so clients and students can use the project confidently.',
+    icon: Headphones,
+    details: ['Support period included', 'Usage guidance', 'Upgrade discussion'],
+    color: 'text-indigo-500',
+    bg: 'bg-indigo-500/10',
+    border: 'border-indigo-500/20'
   }
 ];
 
 const ProjectDevelopmentFlow: React.FC = () => {
   return (
-    <section id="process-flow" className="py-24 relative overflow-hidden bg-deep-navy">
+    <section id="project-workflow" className="py-24 relative overflow-hidden bg-slate-950">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
       <div className="absolute top-1/4 left-0 w-full h-[500px] bg-electric-blue/5 blur-[120px] pointer-events-none" />
 
       <Container className="relative z-10">
         <SectionHeading
           title="Project Development Flow"
-          subtitle="Our enterprise-grade methodology ensures every system we build is scalable, secure, and delivered on time."
+          subtitle="Our workflow keeps every project clear from the first discussion to delivery, documentation, deployment, and client support."
         />
 
         <div className="max-w-5xl mx-auto mt-20 relative">
           {/* Central Neon Line for Desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-electric-blue/50 via-purple-500/50 to-cyan/50 -translate-x-1/2 rounded-full" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-electric-blue/50 via-purple-500/50 to-cyan/50 -translate-x-1/2 rounded-full shadow-[0_0_30px_rgba(37,99,235,0.7)]" />
 
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, index) => {
