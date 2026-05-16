@@ -1,5 +1,5 @@
 import React from 'react';
-import { Recommendation } from './RecommendationCard';
+import type { Recommendation } from './RecommendationCard';
 
 interface SmartRecommendationCardProps extends Omit<{ recommendation: Recommendation }, 'estimatedCost'> {
   recommendation: Recommendation & {

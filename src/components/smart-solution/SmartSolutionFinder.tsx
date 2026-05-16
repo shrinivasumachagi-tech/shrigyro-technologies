@@ -11,6 +11,8 @@ const SmartSolutionFinder: React.FC<SmartSolutionFinderProps> = () => {
           Smart Solution Finder
         </h2>
         <SolutionSteps />
+      </div>
+    </section>
   );
 };
 

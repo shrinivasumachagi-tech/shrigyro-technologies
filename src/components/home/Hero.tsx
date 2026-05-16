@@ -320,12 +320,12 @@ const Hero: React.FC = () => {
         <div ref={contentRef} className="text-center flex flex-col items-center max-w-4xl px-6 pointer-events-auto">
           
           <h1 className={`text-5xl md:text-7xl lg:text-[90px] leading-[0.95] font-bold tracking-tighter mb-8 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            Bridging Hardware, Software & Intelligent Automation
+            Bridging Intelligent Automation, Industrial Innovation & Digital Transformation
           </h1>
           
           <p className={`text-lg md:text-xl font-normal max-w-2xl leading-relaxed mb-12 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            AI-driven automation, embedded systems, ERP platforms, IoT solutions, robotics, and intelligent digital infrastructure for modern businesses.
-          </p>
+            ShriGyro Technologies builds modern AI automation systems, embedded solutions, smart web platforms, industrial monitoring systems, and intelligent digital infrastructure for startups, industries, and businesses.</p>
+          <p className={`text-lg md:text-xl font-normal max-w-2xl leading-relaxed mb-12 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>From intelligent automation and AI-powered business systems to industrial embedded solutions and scalable web platforms, we help businesses adopt modern technology with practical and affordable innovation.</p>
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <button 
@@ -333,15 +333,15 @@ const Hero: React.FC = () => {
                 window.dispatchEvent(
                   new CustomEvent('openQueryModal', {
                     detail: {
-                      formName: 'Popup Query Modal',
-                      title: 'Start Your Project',
+                      formName: 'Free Consultation',
+                      title: 'Free Consultation',
                     },
                   })
                 )
               }
               className={`rounded-full px-8 py-4 text-sm font-medium hover:scale-105 transition-all duration-300 flex items-center gap-2 shadow-lg ${isDarkMode ? 'bg-electric-blue text-white hover:bg-cyan-500' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
             >
-              Get Started
+              Free Consultation
               <ArrowRight size={18} />
             </button>
             <button 

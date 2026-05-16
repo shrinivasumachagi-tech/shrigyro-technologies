@@ -6,7 +6,7 @@ import AiThinkingLoader from './AiThinkingLoader';
 import PricingEngine from './PricingEngine';
 
 const SmartSolutionSteps: React.FC = () => {
-...  const [step, setStep] = useState<number>(1);
+const [step, setStep] = useState<number>(1);
   const [businessType, setBusinessType] = useState<string>('startup');
   const [serviceId, setServiceId] = useState<string | null>(null);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);

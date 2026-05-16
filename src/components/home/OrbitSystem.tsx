@@ -169,7 +169,7 @@ const StatCard = ({ item, isMobile, duration }: { item: (typeof orbitData)[0], i
     animate={{ y: [0, isMobile ? -5 : -10, 0] }}
     transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
   >
-    <GlassCard className="p-2 md:p-4 min-w-[120px] md:min-w-[150px] border-cyan/20 bg-gray-100/60 dark:bg-black/40 hover:border-cyan/50 transition-colors shadow-2xl">
+    <GlassCard className="p-2 md:p-4 min-w-[120px] md:min-w-[150px] border-cyan/50 bg-gradient-to-r from-cyan-100 to-cyan-200 dark:border-cyan/20 dark:bg-black/40 hover:border-cyan/80 transition-colors shadow-2xl">
       <div className="flex flex-col items-center text-center">
         <item.icon size={isMobile ? 14 : 16} className="text-cyan mb-1.5" />
         <h4 className="text-lg md:text-2xl font-bold font-sora text-gray-900 dark:text-white leading-none">{item.value}</h4>

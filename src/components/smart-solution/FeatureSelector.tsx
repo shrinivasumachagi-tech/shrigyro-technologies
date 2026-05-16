@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { serviceDetails } from '../../data/serviceDetails';
 
 interface FeatureSelectorProps {
@@ -12,12 +12,9 @@ const FeatureSelector: React.FC<FeatureSelectorProps> = ({ serviceId, selectedFe
   const features = service?.features || [];
 
   const toggleFeature = (feature: string) => {
-    setSelectedFeatures((prev) => {
-      if (prev.includes(feature)) {
-        return prev.filter((f) => f !== feature);
-      }
-      return [...prev, feature];
-    });
+    setSelectedFeatures(selectedFeatures.includes(feature) ?
+      selectedFeatures.filter(f => f !== feature) :
+      [...selectedFeatures, feature]);
   };
 
   useEffect(() => {

@@ -1,9 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, CheckCircle2, Send } from 'lucide-react';
 import PricingEngine from './smart-solution/PricingEngine';
 import SectionHeading from '@/components/ui/SectionHeading';
-import SmartRecommendationCard from './smart-solution/SmartRecommendationCard';
+import Container from '@/components/ui/Container';
+import SmartRecommendationCard from '@/components/smart-solution/SmartRecommendationCard';
+import Button from '@/components/ui/Button';
+
 
 const projectTypePrices = {
   academic: 5000,
@@ -168,7 +171,9 @@ const rec = PricingEngine.calculate({ serviceId: 'web-development', selectedFeat
             >
               {formatPrice(estimate)}
                 </motion.p>
-            /* <RecommendationCard recommendation={rec} /> */
+
+                // <SmartRecommendationCard recommendation={rec} />
+
             <p className="mx-auto mb-6 max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-300">
               {summary || 'Selected project'} estimated based on current choices. Final cost depends on exact features, hardware, APIs, and delivery timeline.
             </p>
