@@ -1,6 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BRAND_ASSETS } from '@/constants/branding';
+import {
+  SEO_DESCRIPTION,
+  SEO_IMAGE,
+  SEO_KEYWORDS,
+  SEO_TITLE,
+  SITE_URL,
+  buildSchemaGraph,
+} from '@/constants/seo';
 
 interface SEOProps {
   title?: string;
@@ -12,14 +20,16 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'ShriGyro Technologies',
-  description = 'ShriGyro Technologies provides AI automation, embedded systems, IoT solutions, web development, industrial automation, cloud services, and intelligent digital solutions for startups, businesses, and industries.',
-  keywords = 'ShriGyro Technologies, AI automation, embedded systems, IoT solutions, web development, industrial automation, cloud services, robotics, ERP solutions, WhatsApp automation',
-  image = 'https://shrigyro.com/logo/shrigyro-globe.png',
-  url = "https://shrigyro.com",
-  type = "website"
+  title = SEO_TITLE,
+  description = SEO_DESCRIPTION,
+  keywords = SEO_KEYWORDS,
+  image = SEO_IMAGE,
+  url = SITE_URL,
+  type = 'website'
 }) => {
-  const siteTitle = title.includes('ShriGyro Technologies') ? title : `${title} | ShriGyro Technologies`;
+  const siteTitle = title;
+  const canonicalUrl = url;
+  const schema = buildSchemaGraph(canonicalUrl);
 
   return (
     <Helmet>
@@ -28,24 +38,34 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="title" content={siteTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="icon" type="image/png" href={BRAND_ASSETS.globe} />
-      <link rel="apple-touch-icon" href={BRAND_ASSETS.globe} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="author" content="ShriGyro Technologies" />
+      <meta name="theme-color" content="#2563eb" />
+      <link rel="icon" type="image/png" href={BRAND_ASSETS.globe192} />
+      <link rel="apple-touch-icon" href={BRAND_ASSETS.globe192} />
+      <link rel="manifest" href="/site.webmanifest" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
+      <meta property="og:site_name" content="ShriGyro Technologies" />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={url} />
+      <meta property="og:image:alt" content="ShriGyro Technologies logo" />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:locale" content="en_IN" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content="ShriGyro Technologies logo" />
 
       {/* Canonical URL */}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonicalUrl} />
+
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </Helmet>
   );
 };

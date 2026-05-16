@@ -8,6 +8,7 @@ interface SectionHeadingProps {
   align?: 'left' | 'center' | 'right';
   gradient?: boolean;
   className?: string;
+  level?: 1 | 2;
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -16,6 +17,7 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   align = 'center',
   gradient = true,
   className,
+  level = 2,
 }) => {
   const alignments = {
     left: 'text-left items-start',
@@ -25,18 +27,33 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
 
   return (
     <div className={cn('flex flex-col mb-12', alignments[align], className)}>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className={cn(
-          'text-3xl md:text-5xl font-bold font-sora leading-tight',
-          gradient && 'text-gradient'
-        )}
-      >
-        {title}
-      </motion.h2>
+      {level === 1 ? (
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className={cn(
+            'text-3xl md:text-5xl font-bold font-sora leading-tight',
+            gradient && 'text-gradient'
+          )}
+        >
+          {title}
+        </motion.h1>
+      ) : (
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className={cn(
+            'text-3xl md:text-5xl font-bold font-sora leading-tight',
+            gradient && 'text-gradient'
+          )}
+        >
+          {title}
+        </motion.h2>
+      )}
       {subtitle && (
         <motion.p
           initial={{ opacity: 0, y: 10 }}

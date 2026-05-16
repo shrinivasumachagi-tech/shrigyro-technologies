@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             <a href="/" className="group mb-6 flex flex-col items-center gap-4 sm:flex-row">
               <img
                 src={BRAND_ASSETS.globe}
-                alt=""
+                alt="ShriGyro Technologies logo"
                 className="h-14 w-14 object-contain drop-shadow-[0_0_22px_rgba(56,189,248,0.65)] transition-transform duration-300 group-hover:scale-105"
                 width="56"
                 height="56"

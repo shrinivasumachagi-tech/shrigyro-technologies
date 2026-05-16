@@ -18,6 +18,7 @@ import {
 } from '@/utils/email';
 import SEO from '@/components/layout/SEO';
 import { WHATSAPP_LINK_NUMBER, WHATSAPP_NUMBER } from '@/constants/branding';
+import { SITE_URL } from '@/constants/seo';
 
 const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,13 +73,14 @@ const ContactPage: React.FC = () => {
 
   return (
     <AppLayout>
-      <SEO title="Contact Us | Start Your Project" description="Get in touch for AI, ERP, and automation consultations." />
+      <SEO title="Contact ShriGyro Technologies | Start Your Automation Project" url={`${SITE_URL}/contact`} />
       <section className="relative pt-20 pb-12 bg-gray-50 dark:bg-deep-navy overflow-hidden">
         <GlowEffect color="bg-electric-blue" className="top-0 right-0 opacity-10" />
         <Container>
           <SectionHeading
             title="Get In Touch"
             subtitle="Have a complex engineering challenge or an academic research goal? Let's discuss how our enterprise-grade architecture and intelligent automation expertise can accelerate your project's success."
+            level={1}
           />
         </Container>
       </section>

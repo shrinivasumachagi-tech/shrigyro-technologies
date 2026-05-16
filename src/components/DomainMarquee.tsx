@@ -27,7 +27,7 @@ const DomainMarquee: React.FC = () => {
           transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
         >
           {marqueeItems.map((domain, index) => (
-            <div
+            <article
               key={`${domain.name}-${index}`}
               className="group flex min-w-[230px] items-center gap-4 rounded-2xl border border-blue-500/15 bg-white/75 px-5 py-5 shadow-sm shadow-blue-950/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-electric-blue/50 hover:bg-white hover:shadow-[0_18px_50px_rgba(37,99,235,0.16)] dark:border-white/10 dark:bg-white/[0.06] dark:hover:bg-white/[0.09] sm:min-w-[260px] sm:px-6"
             >
@@ -38,7 +38,7 @@ const DomainMarquee: React.FC = () => {
                 <p className="font-sora text-lg font-bold text-gray-900 dark:text-white">{domain.name}</p>
                 <p className="text-xs font-semibold uppercase tracking-widest text-blue-500/70 dark:text-cyan/70">Technology Domain</p>
               </div>
-            </div>
+            </article>
           ))}
         </motion.div>
       </div>

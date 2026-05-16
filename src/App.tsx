@@ -1,14 +1,30 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import emailjs from '@emailjs/browser';
-import HomePage from './pages/Home';
-import ServicesPage from './pages/Services';
-import SolutionsPage from './pages/Solutions';
-import AboutPage from './pages/About';
-import ContactPage from './pages/Contact';
 import ScrollToTop from './components/layout/ScrollToTop';
 import IntroLoader from './components/branding/IntroLoader';
+import { BRAND_ASSETS } from './constants/branding';
+
+const HomePage = lazy(() => import('./pages/Home'));
+const ServicesPage = lazy(() => import('./pages/Services'));
+const SolutionsPage = lazy(() => import('./pages/Solutions'));
+const AboutPage = lazy(() => import('./pages/About'));
+const ContactPage = lazy(() => import('./pages/Contact'));
+
+const PageFallback = () => (
+  <div className="flex min-h-screen items-center justify-center bg-white dark:bg-deep-navy" aria-label="Loading page">
+    <img
+      src={BRAND_ASSETS.globe}
+      alt="ShriGyro Technologies"
+      className="h-14 w-14 animate-pulse object-contain drop-shadow-[0_0_24px_rgba(37,99,235,0.55)]"
+      width="56"
+      height="56"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+);
 
 function App() {
   // Initialize EmailJS on app mount
@@ -70,13 +86,15 @@ function App() {
           },
         }}
       />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/solutions" element={<SolutionsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
+      <Suspense fallback={<PageFallback />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

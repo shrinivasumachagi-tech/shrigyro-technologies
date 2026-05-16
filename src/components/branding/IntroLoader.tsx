@@ -73,7 +73,7 @@ const IntroLoader: React.FC = () => {
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             controls={false}
             disablePictureInPicture
             onCanPlay={handleCanPlay}
@@ -95,7 +95,7 @@ const IntroLoader: React.FC = () => {
           >
             <img
               src={BRAND_ASSETS.globe}
-              alt=""
+              alt="ShriGyro Technologies loading logo"
               className="h-14 w-14 animate-pulse object-contain drop-shadow-[0_0_22px_rgba(56,189,248,0.85)] sm:h-16 sm:w-16"
               width="64"
               height="64"

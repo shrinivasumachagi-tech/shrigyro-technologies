@@ -1,6 +1,8 @@
 export const BRAND_ASSETS = {
   navbarLogo: '/logo/shrigyro-logo.png',
   globe: '/logo/shrigyro-globe.png',
+  globe192: '/logo/shrigyro-globe-192.png',
+  globe512: '/logo/shrigyro-globe-512.png',
   introVideo: '/videos/shrigyro-intro.mp4',
 } as const;
 

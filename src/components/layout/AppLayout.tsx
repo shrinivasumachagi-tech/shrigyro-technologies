@@ -14,9 +14,12 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({ children, className }) => {
   return (
     <div className={cn('min-h-screen flex flex-col bg-white text-gray-900 transition-colors duration-300 dark:bg-deep-navy dark:text-white', className)}>
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <QueryModal />
       <motion.main
+        id="main-content"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

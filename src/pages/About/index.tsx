@@ -7,16 +7,18 @@ import FinalCTA from '@/components/home/FinalCTA';
 import SEO from '@/components/layout/SEO';
 import AnimatedStats from '@/components/ui/AnimatedStats';
 import GradientOrbs from '@/components/ui/GradientOrbs';
+import { SITE_URL } from '@/constants/seo';
 
 const AboutPage: React.FC = () => {
   return (
     <AppLayout>
-      <SEO title="About Us | Vision & Mission" description="Meet the team bridging the gap between engineering and intelligent software." />
+      <SEO title="About ShriGyro Technologies | AI Automation Startup India" url={`${SITE_URL}/about`} />
       <section className="pt-20 pb-12 bg-gray-50 dark:bg-deep-navy">
         <Container>
           <SectionHeading
             title="About ShriGyro"
             subtitle="Engineering the future through intelligent automation and innovative digital solutions."
+            level={1}
           />
         </Container>
       </section>

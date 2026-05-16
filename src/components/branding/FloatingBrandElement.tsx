@@ -18,7 +18,7 @@ const FloatingBrandElement: React.FC = () => {
       <div className="absolute inset-0 rounded-2xl bg-blue-500/10 blur-xl" />
       <img
         src={BRAND_ASSETS.globe}
-        alt=""
+        alt="ShriGyro Technologies"
         className="relative h-9 w-9 object-contain drop-shadow-[0_0_18px_rgba(56,189,248,0.65)] md:h-11 md:w-11"
         width="44"
         height="44"

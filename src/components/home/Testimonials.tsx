@@ -66,6 +66,10 @@ const Testimonials: React.FC = () => {
                   src={testimonials[index].avatar}
                   alt={testimonials[index].name}
                   className="w-16 h-16 rounded-full border-2 border-electric-blue/30 mb-4 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width="64"
+                  height="64"
                 />
                 <h4 className="text-lg font-bold font-sora text-gray-900 dark:text-white">{testimonials[index].name}</h4>
                 <p className="text-sm text-gray-500 font-inter">{testimonials[index].role}</p>
