@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import { WHATSAPP_LINK_NUMBER } from '@/constants/branding';
 
 const FloatingWhatsAppButton: React.FC = () => {
-  const whatsappNumber = "7411655519";
-  const message = "Hello ShriGyro Technologies, I’m interested in your services.";
+  const message = "Hello ShriGyro Technologies, I'm interested in your services.";
   const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_LINK_NUMBER}?text=${encodedMessage}`;
 
   return (
     <motion.a
@@ -15,17 +15,12 @@ const FloatingWhatsAppButton: React.FC = () => {
       rel="noopener noreferrer"
       initial={{ y: 0 }}
       animate={{ y: [-10, 0, -10] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      className="fixed bottom-8 right-8 z-[100] flex items-center gap-3 px-6 py-3 glass rounded-full border-[#25D366]/30 shadow-[0_0_30px_rgba(37,211,102,0.3)] hover:shadow-[0_0_50px_rgba(37,211,102,0.5)] transition-all group overflow-hidden"
-      aria-label="Contact on WhatsApp"
+      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+      className="group fixed bottom-6 right-5 z-[100] flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#25D366]/30 bg-[#25D366] shadow-[0_0_30px_rgba(37,211,102,0.34)] transition-all hover:scale-105 hover:shadow-[0_0_52px_rgba(37,211,102,0.5)] sm:bottom-8 sm:right-8 sm:h-16 sm:w-16"
+      aria-label="Contact ShriGyro on WhatsApp"
     >
-      <div className="absolute inset-0 bg-[#25D366]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366]">
-        <MessageCircle size={18} fill="white" className="text-white" />
-      </div>
-      <span className="relative z-10 font-bold font-sora text-white tracking-wider">
-        WhatsApp
-      </span>
+      <div className="absolute inset-0 bg-white/15 opacity-0 transition-opacity group-hover:opacity-100" />
+      <MessageCircle size={26} fill="white" className="relative z-10 text-white sm:h-7 sm:w-7" />
     </motion.a>
   );
 };

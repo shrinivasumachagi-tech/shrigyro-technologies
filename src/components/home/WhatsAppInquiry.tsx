@@ -4,10 +4,10 @@ import { MessageCircle, QrCode, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import GlassCard from '@/components/ui/GlassCard';
 import Button from '@/components/ui/Button';
+import { WHATSAPP_LINK_NUMBER, WHATSAPP_NUMBER } from '@/constants/branding';
 
 const WhatsAppInquiry: React.FC = () => {
-  const whatsappNumber = "7411678188";
-  const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=Hello%20ShriGyro%20Technologies,%20I%20have%20an%20inquiry%20regarding%20academic%20projects.`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_LINK_NUMBER}?text=Hello%20ShriGyro%20Technologies,%20I%20have%20an%20inquiry%20regarding%20academic%20projects.`;
 
   return (
     <section className="py-24 relative overflow-hidden bg-white dark:bg-deep-navy">
@@ -100,7 +100,7 @@ const WhatsAppInquiry: React.FC = () => {
                   </div>
                   <div className="text-center">
                     <p className="text-sm font-bold font-sora text-gray-900 dark:text-white uppercase tracking-widest mb-1">Scan to Connect</p>
-                    <p className="text-[10px] text-gray-500 uppercase">+91 {whatsappNumber}</p>
+                    <p className="text-[10px] text-gray-500 uppercase">+91 {WHATSAPP_NUMBER}</p>
                   </div>
                 </div>
                 

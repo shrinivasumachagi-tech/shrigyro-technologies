@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { BRAND_ASSETS } from '@/constants/branding';
 
 interface SEOProps {
   title?: string;
@@ -11,21 +12,24 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = "ShriGyro Technologies | Intelligent Automation & Engineering",
-  description = "Bridging Hardware, Software & Intelligent Automation. ShriGyro Technologies offers AI solutions, ERP systems, embedded robotics, and IoT engineering.",
-  keywords = "AI, Automation, ERP, Embedded Systems, Robotics, IoT, ShriGyro, Engineering, Software Development",
-  image = "https://shrigyro.com/og-image.jpg", // Placeholder
+  title = 'ShriGyro Technologies',
+  description = 'ShriGyro Technologies provides AI automation, embedded systems, IoT solutions, web development, industrial automation, cloud services, and intelligent digital solutions for startups, businesses, and industries.',
+  keywords = 'ShriGyro Technologies, AI automation, embedded systems, IoT solutions, web development, industrial automation, cloud services, robotics, ERP solutions, WhatsApp automation',
+  image = 'https://shrigyro.com/logo/shrigyro-globe.png',
   url = "https://shrigyro.com",
   type = "website"
 }) => {
-  const siteTitle = title.includes("ShriGyro") ? title : `${title} | ShriGyro Technologies`;
+  const siteTitle = title.includes('ShriGyro Technologies') ? title : `${title} | ShriGyro Technologies`;
 
   return (
     <Helmet>
       {/* Standard metadata */}
       <title>{siteTitle}</title>
+      <meta name="title" content={siteTitle} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <link rel="icon" type="image/png" href={BRAND_ASSETS.globe} />
+      <link rel="apple-touch-icon" href={BRAND_ASSETS.globe} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />

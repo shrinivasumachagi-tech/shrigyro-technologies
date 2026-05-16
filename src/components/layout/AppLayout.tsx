@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import QueryModal from '../ui/QueryModal';
 import { cn } from '@/utils/cn';
+import FloatingBrandElement from '@/components/branding/FloatingBrandElement';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -24,6 +25,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children, className }) => {
         {children}
       </motion.main>
       <Footer />
+      <FloatingBrandElement />
       
       {/* Scroll Progress Bar */}
       <motion.div

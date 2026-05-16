@@ -7,6 +7,7 @@ import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { serviceLinks } from '@/data/serviceDetails';
+import { BRAND_ASSETS } from '@/constants/branding';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -39,19 +40,25 @@ const Navbar: React.FC = () => {
           : 'bg-transparent py-6'
       )}
     >
-      <Container className="flex items-center justify-between">
+      <Container className="flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-electric-blue to-cyan rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
-            <span className="text-white font-bold text-xl font-sora">S</span>
-          </div>
-          <span className="text-xl font-bold font-sora tracking-tight text-gray-900 dark:text-white">
-            Shri<span className="text-electric-blue">Gyro</span>
-          </span>
+        <Link
+          to="/"
+          className="group flex items-center"
+          aria-label="ShriGyro Technologies home"
+        >
+          <img
+            src={BRAND_ASSETS.navbarLogo}
+            alt="ShriGyro Technologies"
+            className="h-9 w-auto max-w-[138px] object-contain drop-shadow-[0_0_0_rgba(37,99,235,0)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(37,99,235,0.55)] sm:h-11 sm:max-w-[180px] lg:h-12 lg:max-w-[190px]"
+            width="190"
+            height="48"
+            decoding="async"
+          />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => {
             if (link.name === 'Services') {
               return (
@@ -112,7 +119,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4">
           <button
             onClick={toggleTheme}
             className="p-2.5 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:text-electric-blue dark:hover:text-cyan transition-all duration-300 border border-transparent hover:border-electric-blue/30"
@@ -141,7 +148,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="lg:hidden flex items-center gap-3">
+        <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10"

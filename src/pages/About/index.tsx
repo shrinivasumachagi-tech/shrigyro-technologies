@@ -54,7 +54,7 @@ const AboutPage: React.FC = () => {
             stats={[
               { label: 'Projects Delivered', value: '10+' },
               { label: 'Tech Stack', value: '15+' },
-              { label: 'Focus Areas', value: '5' },
+              { label: 'Focus Areas', value: '10' },
               { label: 'Team Passion', value: '100%' },
             ]}
           />

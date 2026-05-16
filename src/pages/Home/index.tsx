@@ -17,7 +17,7 @@ import SEO from '@/components/layout/SEO';
 
 const HomePage: React.FC = () => (
   <AppLayout className="bg-white dark:bg-neutral-950 transition-colors duration-500">
-    <SEO title="Bridging Hardware, Software & Intelligent Solutions" />
+    <SEO />
     <Hero />
     <DomainMarquee />
     <ServicesOverview />

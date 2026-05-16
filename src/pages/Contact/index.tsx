@@ -17,6 +17,7 @@ import {
   validateFormData,
 } from '@/utils/email';
 import SEO from '@/components/layout/SEO';
+import { WHATSAPP_LINK_NUMBER, WHATSAPP_NUMBER } from '@/constants/branding';
 
 const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -107,7 +108,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Phone</p>
-                      <a href="tel:7411678188" className="text-gray-800 dark:text-gray-200 font-medium hover:text-electric-blue">+91 74116 78188</a>
+                      <a href={`tel:+91${WHATSAPP_NUMBER}`} className="text-gray-800 dark:text-gray-200 font-medium hover:text-electric-blue">+91 74116 55519</a>
                     </div>
                   </div>
                   
@@ -117,7 +118,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">WhatsApp</p>
-                      <a href="https://wa.me/917411678188" target="_blank" rel="noopener noreferrer" className="text-gray-800 dark:text-gray-200 font-medium hover:text-electric-blue">Quick Connect</a>
+                      <a href={`https://wa.me/${WHATSAPP_LINK_NUMBER}`} target="_blank" rel="noopener noreferrer" className="text-gray-800 dark:text-gray-200 font-medium hover:text-electric-blue">Quick Connect</a>
                     </div>
                   </div>
 
@@ -185,7 +186,7 @@ const ContactPage: React.FC = () => {
                       <input 
                         type="tel" 
                         required
-                        placeholder="+91 74116 78188" 
+                        placeholder="+91 74116 55519" 
                         className="w-full px-5 py-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-electric-blue outline-none transition-all focus:ring-1 focus:ring-electric-blue/30"
                         value={formState.phone}
                         onChange={(e) => setFormState({...formState, phone: e.target.value})}

@@ -8,6 +8,7 @@ import SolutionsPage from './pages/Solutions';
 import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
 import ScrollToTop from './components/layout/ScrollToTop';
+import IntroLoader from './components/branding/IntroLoader';
 
 function App() {
   // Initialize EmailJS on app mount
@@ -29,6 +30,7 @@ function App() {
   }, []);
   return (
     <>
+      <IntroLoader />
       <ScrollToTop />
       <Toaster
         position="top-right"
