@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, CheckCircle2, Send } from 'lucide-react';
-import Container from '@/components/ui/Container';
+import PricingEngine from './smart-solution/PricingEngine';
 import SectionHeading from '@/components/ui/SectionHeading';
-import Button from '@/components/ui/Button';
+import SmartRecommendationCard from './smart-solution/SmartRecommendationCard';
 
 const projectTypePrices = {
   academic: 5000,
@@ -51,17 +51,9 @@ const CostCalculator: React.FC<CostCalculatorProps> = ({ compact = false, defaul
   const [supportDuration, setSupportDuration] = useState(1);
   const [deployment, setDeployment] = useState(true);
 
-  const estimate = useMemo(() => {
-    let total = projectTypePrices[projectType] + technologyPrices[technology] + websitePrices[websiteType];
+const rec = PricingEngine.calculate({ serviceId: 'web-development', selectedFeatures: [projectType, technology, websiteType, hardwareRequired ? 'Hardware Required' : '', aiFeatures ? 'AI Features' : '', documentation ? 'Documentation' : '', deployment ? 'Deployment' : ''] });
+  const estimate = rec.estimatedCost.max;
 
-    if (hardwareRequired) total += 10000;
-    if (aiFeatures) total += 12000;
-    if (documentation) total += 4000;
-    if (deployment) total += 5000;
-
-    total += Math.max(0, supportDuration - 1) * 3000;
-    return total;
-  }, [aiFeatures, deployment, documentation, hardwareRequired, projectType, supportDuration, technology, websiteType]);
 
   const summary = [
     projectType === 'website' || websiteType !== 'none' ? 'Website' : 'Project',
@@ -175,7 +167,8 @@ const CostCalculator: React.FC<CostCalculatorProps> = ({ compact = false, defaul
               className="mb-4 font-sora text-4xl font-black text-gray-900 dark:text-white md:text-5xl"
             >
               {formatPrice(estimate)}
-            </motion.p>
+                </motion.p>
+            /* <RecommendationCard recommendation={rec} /> */
             <p className="mx-auto mb-6 max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-300">
               {summary || 'Selected project'} estimated based on current choices. Final cost depends on exact features, hardware, APIs, and delivery timeline.
             </p>
@@ -226,6 +219,7 @@ const CostCalculator: React.FC<CostCalculatorProps> = ({ compact = false, defaul
           subtitle="Select project type, technology, AI features, hardware, documentation, support, and deployment to get a quick budget estimate before contacting us."
         />
         {content}
+            <SmartRecommendationCard recommendation={rec} />
       </Container>
     </section>
   );
