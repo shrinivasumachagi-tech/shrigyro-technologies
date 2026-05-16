@@ -1,0 +1,85 @@
+{
+  "swarms": {
+    "swarm-1778918305863-vd72qv": {
+      "swarmId": "swarm-1778918305863-vd72qv",
+      "topology": "hierarchical",
+      "maxAgents": 8,
+      "status": "terminated",
+      "agents": [],
+      "tasks": [],
+      "config": {
+        "topology": "hierarchical",
+        "maxAgents": 8,
+        "strategy": "specialized",
+        "communicationProtocol": "message-bus",
+        "autoScaling": true,
+        "consensusMechanism": "majority"
+      },
+      "createdAt": "2026-05-16T07:58:25.863Z",
+      "updatedAt": "2026-05-16T08:20:13.128Z",
+      "pid": 26640,
+      "terminationReason": "host process 26640 exited"
+    },
+    "swarm-1778919613128-p1imwy": {
+      "swarmId": "swarm-1778919613128-p1imwy",
+      "topology": "hierarchical",
+      "maxAgents": 8,
+      "status": "terminated",
+      "agents": [],
+      "tasks": [],
+      "config": {
+        "topology": "hierarchical",
+        "maxAgents": 8,
+        "strategy": "specialized",
+        "communicationProtocol": "message-bus",
+        "autoScaling": true,
+        "consensusMechanism": "majority"
+      },
+      "createdAt": "2026-05-16T08:20:13.128Z",
+      "updatedAt": "2026-05-16T09:30:56.143Z",
+      "pid": 24548,
+      "terminationReason": "host process 24548 exited"
+    },
+    "swarm-1778923856142-geiiui": {
+      "swarmId": "swarm-1778923856142-geiiui",
+      "topology": "hierarchical",
+      "maxAgents": 15,
+      "status": "terminated",
+      "agents": [],
+      "tasks": [],
+      "config": {
+        "topology": "hierarchical",
+        "maxAgents": 15,
+        "strategy": "specialized",
+        "communicationProtocol": "message-bus",
+        "autoScaling": true,
+        "consensusMechanism": "majority"
+      },
+      "createdAt": "2026-05-16T09:30:56.142Z",
+      "updatedAt": "2026-05-16T09:31:19.698Z",
+      "pid": 24904,
+      "terminationReason": "host process 24904 exited"
+    },
+    "swarm-1778923879697-ofcn8z": {
+      "swarmId": "swarm-1778923879697-ofcn8z",
+      "topology": "hierarchical",
+      "maxAgents": 15,
+      "status": "terminated",
+      "agents": [],
+      "tasks": [],
+      "config": {
+        "topology": "hierarchical",
+        "maxAgents": 15,
+        "strategy": "specialized",
+        "communicationProtocol": "message-bus",
+        "autoScaling": true,
+        "consensusMechanism": "majority"
+      },
+      "createdAt": "2026-05-16T09:31:19.697Z",
+      "updatedAt": "2026-05-16T09:40:23.368Z",
+      "pid": 23644,
+      "terminationReason": "host process 23644 exited"
+    }
+  },
+  "version": "3.0.0"
+}

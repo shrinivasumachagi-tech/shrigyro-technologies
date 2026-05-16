@@ -1,231 +1,636 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calculator, CheckCircle2, Send } from 'lucide-react';
-import PricingEngine from './smart-solution/PricingEngine';
-import SectionHeading from '@/components/ui/SectionHeading';
-import Container from '@/components/ui/Container';
-import SmartRecommendationCard from '@/components/smart-solution/SmartRecommendationCard';
-import Button from '@/components/ui/Button';
+import React, { useMemo, useState } from "react";
+import {
+  Briefcase,
+  Globe,
+  Cpu,
+ Bot,
+  Server,
+  GraduationCap,
+  IndianRupee,
+  CheckCircle2,
+  ArrowRight,
+  ArrowLeft,
+  CalendarClock,
+} from "lucide-react";
 
+type ServiceType =
+  | "web"
+  | "automation"
+  | "embedded"
+  | "labview"
+  | "cloud"
+  | "academic";
 
-const projectTypePrices = {
-  academic: 5000,
-  website: 12000,
-  dashboard: 25000,
-  iot: 18000,
-  embedded: 12000,
-  robotics: 22000,
-  erp: 45000,
-  whatsapp: 18000,
-} as const;
+interface EstimateResult {
+  title: string;
+  min: number;
+  max: number;
+  timeline: string;
+  features: string[];
+}
 
-const technologyPrices = {
-  basic: 0,
-  react: 6000,
-  fullstack: 15000,
-  ai: 18000,
-  iot: 12000,
-  cloud: 10000,
-} as const;
+const serviceOptions = [
+  {
+    id: "web",
+    title: "Web Development",
+    icon: Globe,
+  },
+  {
+    id: "automation",
+    title: "WhatsApp Automation",
+    icon: Bot,
+  },
+  {
+    id: "embedded",
+    title: "Embedded Systems",
+    icon: Cpu,
+  },
+  {
+    id: "labview",
+    title: "LabVIEW Solutions",
+    icon: Server,
+  },
+  {
+    id: "cloud",
+    title: "Cloud Services",
+    icon: Briefcase,
+  },
+  {
+    id: "academic",
+    title: "Academic Projects",
+    icon: GraduationCap,
+  },
+];
 
-const websitePrices = {
-  none: 0,
-  landing: 6000,
-  business: 12000,
-  portfolio: 8000,
-  ecommerce: 25000,
-  admin: 22000,
-} as const;
+const CostCalculator: React.FC = () => {
+  const [step, setStep] = useState(1);
 
-type CostCalculatorProps = {
-  compact?: boolean;
-  defaultProjectType?: keyof typeof projectTypePrices;
-};
+  const [service, setService] = useState<ServiceType>("web");
+  const [projectType, setProjectType] = useState("");
+  const [designType, setDesignType] = useState("");
+  const [features, setFeatures] = useState<string[]>([]);
+  const [businessGrowth, setBusinessGrowth] = useState(6);
 
-const formatPrice = (value: number) => `Rs. ${value.toLocaleString('en-IN')}`;
+  const toggleFeature = (feature: string) => {
+    setFeatures((prev) =>
+      prev.includes(feature)
+        ? prev.filter((f) => f !== feature)
+        : [...prev, feature]
+    );
+  };
 
-const CostCalculator: React.FC<CostCalculatorProps> = ({ compact = false, defaultProjectType = 'website' }) => {
-  const [projectType, setProjectType] = useState<keyof typeof projectTypePrices>(defaultProjectType);
-  const [technology, setTechnology] = useState<keyof typeof technologyPrices>('react');
-  const [hardwareRequired, setHardwareRequired] = useState(false);
-  const [aiFeatures, setAiFeatures] = useState(true);
-  const [websiteType, setWebsiteType] = useState<keyof typeof websitePrices>('business');
-  const [documentation, setDocumentation] = useState(true);
-  const [supportDuration, setSupportDuration] = useState(1);
-  const [deployment, setDeployment] = useState(true);
+  const estimate = useMemo<EstimateResult>(() => {
+    let min = 0;
+    let max = 0;
+    let title = "";
+    let timeline = "";
 
-const rec = PricingEngine.calculate({ serviceId: 'web-development', selectedFeatures: [projectType, technology, websiteType, hardwareRequired ? 'Hardware Required' : '', aiFeatures ? 'AI Features' : '', documentation ? 'Documentation' : '', deployment ? 'Deployment' : ''] });
-  const estimate = rec.estimatedCost.max;
+    switch (service) {
+      case "web":
+        title = "Website Development";
 
+        if (projectType === "Business Website") {
+          min = 10000;
+          max = 15000;
+        }
 
-  const summary = [
-    projectType === 'website' || websiteType !== 'none' ? 'Website' : 'Project',
-    aiFeatures ? 'AI' : '',
-    websiteType === 'admin' || projectType === 'dashboard' ? 'Dashboard' : '',
-  ].filter(Boolean).join(' + ');
+        if (projectType === "Portfolio Website") {
+          min = 5000;
+          max = 8000;
+        }
 
-  const content = (
-    <div className="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-white p-6 shadow-2xl shadow-blue-900/5 dark:border-white/10 dark:bg-white/5 md:p-8">
-      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-electric-blue/10 blur-[90px]" />
+        if (projectType === "Landing Page") {
+          min = 4000;
+          max = 7000;
+        }
 
-      <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <label className="space-y-2">
-              <span className="text-sm font-bold text-gray-700 dark:text-gray-300">Project Type</span>
-              <select
-                value={projectType}
-                onChange={(event) => setProjectType(event.target.value as keyof typeof projectTypePrices)}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none focus:border-electric-blue dark:border-white/10 dark:bg-deep-navy"
-              >
-                <option value="academic">Academic Project</option>
-                <option value="website">Website</option>
-                <option value="dashboard">Dashboard System</option>
-                <option value="iot">IoT Solution</option>
-                <option value="embedded">Embedded System</option>
-                <option value="robotics">Robotics</option>
-                <option value="erp">ERP System</option>
-                <option value="whatsapp">WhatsApp Automation</option>
-              </select>
-            </label>
+        if (projectType === "E-Commerce") {
+          min = 15000;
+          max = 35000;
+        }
 
-            <label className="space-y-2">
-              <span className="text-sm font-bold text-gray-700 dark:text-gray-300">Technology</span>
-              <select
-                value={technology}
-                onChange={(event) => setTechnology(event.target.value as keyof typeof technologyPrices)}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none focus:border-electric-blue dark:border-white/10 dark:bg-deep-navy"
-              >
-                <option value="basic">Basic Stack</option>
-                <option value="react">React Frontend</option>
-                <option value="fullstack">Full Stack App</option>
-                <option value="ai">AI Integrated Stack</option>
-                <option value="iot">IoT Stack</option>
-                <option value="cloud">Cloud Ready Stack</option>
-              </select>
-            </label>
+        if (projectType === "Custom Web App") {
+          min = 20000;
+          max = 50000;
+        }
 
-            <label className="space-y-2">
-              <span className="text-sm font-bold text-gray-700 dark:text-gray-300">Website Type</span>
-              <select
-                value={websiteType}
-                onChange={(event) => setWebsiteType(event.target.value as keyof typeof websitePrices)}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none focus:border-electric-blue dark:border-white/10 dark:bg-deep-navy"
-              >
-                <option value="none">Not Required</option>
-                <option value="landing">Landing Page</option>
-                <option value="business">Business Website</option>
-                <option value="portfolio">Portfolio Website</option>
-                <option value="ecommerce">E-commerce Website</option>
-                <option value="admin">Admin Panel / Dashboard</option>
-              </select>
-            </label>
+        if (designType === "3D Website") {
+          min += 3000;
+          max += 7000;
+        }
 
-            <label className="space-y-2">
-              <span className="text-sm font-bold text-gray-700 dark:text-gray-300">Support Duration: {supportDuration} month(s)</span>
-              <input
-                type="range"
-                min="1"
-                max="12"
-                value={supportDuration}
-                onChange={(event) => setSupportDuration(Number(event.target.value))}
-                className="w-full accent-electric-blue"
-              />
-            </label>
-          </div>
+        timeline = "1 - 3 Weeks";
+        break;
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {[
-              ['Hardware Required', hardwareRequired, setHardwareRequired],
-              ['AI Features', aiFeatures, setAiFeatures],
-              ['Documentation', documentation, setDocumentation],
-              ['Deployment', deployment, setDeployment],
-            ].map(([label, checked, setter]) => (
-              <label
-                key={label as string}
-                className="flex cursor-pointer items-center justify-between rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 transition-all hover:border-electric-blue/50 dark:border-white/10 dark:bg-deep-navy/60"
-              >
-                <span className="font-semibold text-gray-700 dark:text-gray-200">{label as string}</span>
-                <input
-                  type="checkbox"
-                  checked={checked as boolean}
-                  onChange={(event) => (setter as React.Dispatch<React.SetStateAction<boolean>>)(event.target.checked)}
-                  className="h-5 w-5 accent-electric-blue"
-                />
-              </label>
-            ))}
-          </div>
-        </div>
+      case "automation":
+        title = "WhatsApp Automation";
 
-        <div className="flex flex-col justify-between rounded-[1.5rem] border border-dashed border-electric-blue/30 bg-blue-50/80 p-6 text-center dark:bg-deep-navy/70">
-          <div>
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-electric-blue/10 text-electric-blue">
-              <Calculator size={28} />
-            </div>
-            <p className="mb-2 text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Estimated Cost</p>
-            <motion.p
-              key={estimate}
-              initial={{ opacity: 0, y: 12, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="mb-4 font-sora text-4xl font-black text-gray-900 dark:text-white md:text-5xl"
-            >
-              {formatPrice(estimate)}
-                </motion.p>
+        min = 2000;
+        max = 8000;
 
-                // <SmartRecommendationCard recommendation={rec} />
+        if (features.includes("Chat Booking")) {
+          min += 2000;
+          max += 3000;
+        }
 
-            <p className="mx-auto mb-6 max-w-sm text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-              {summary || 'Selected project'} estimated based on current choices. Final cost depends on exact features, hardware, APIs, and delivery timeline.
-            </p>
-          </div>
+        timeline = "3 - 7 Days";
+        break;
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-2 text-left text-sm text-gray-600 dark:text-gray-300">
-              {['Transparent scope discussion', 'Documentation and deployment options', 'Support based on selected duration'].map((item) => (
-                <div key={item} className="flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-emerald-500" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <Button
-              variant="gradient"
-              className="w-full"
-              onClick={() =>
-                window.dispatchEvent(
-                  new CustomEvent('openQueryModal', {
-                    detail: {
-                      formName: 'Cost Calculator Inquiry',
-                      title: 'Discuss Estimated Cost',
-                      projectType: 'Custom Development',
-                    },
-                  })
-                )
-              }
-            >
-              <Send size={17} className="mr-2" />
-              Discuss Estimate
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+      case "embedded":
+        title = "Embedded Systems";
 
-  if (compact) {
-    return content;
-  }
+        min = 8000;
+        max = 15000;
+
+        timeline = "2 - 4 Weeks";
+        break;
+
+      case "labview":
+        title = "LabVIEW Projects";
+
+        min = 20000;
+        max = 100000;
+
+        timeline = "2 - 8 Weeks";
+        break;
+
+      case "cloud":
+        title = "Cloud Services";
+
+        min = 5000;
+        max = 15000;
+
+        timeline = "1 - 2 Weeks";
+        break;
+
+      case "academic":
+        title = "Academic Projects";
+
+        min = 4000;
+        max = 15000;
+
+        if (features.includes("Hardware")) {
+          min += 3000;
+          max += 5000;
+        }
+
+        if (features.includes("Report")) {
+          min += 2000;
+          max += 3000;
+        }
+
+        timeline = "1 - 3 Weeks";
+        break;
+    }
+
+    if (features.includes("AI Integration")) {
+      min += 2000;
+      max += 5000;
+    }
+
+    if (features.includes("Deployment")) {
+      min += 1000;
+      max += 3000;
+    }
+
+    if (features.includes("SEO")) {
+      min += 1000;
+      max += 2000;
+    }
+
+    if (businessGrowth >= 12) {
+      min += 3000;
+      max += 8000;
+    }
+
+    return {
+      title,
+      min,
+      max,
+      timeline,
+      features,
+    };
+  }, [service, projectType, designType, features, businessGrowth]);
 
   return (
-    <section id="cost-calculator" className="bg-gray-50 py-24 dark:bg-deep-navy">
-      <Container>
-        <SectionHeading
-          title="Dynamic Cost Calculator"
-          subtitle="Select project type, technology, AI features, hardware, documentation, support, and deployment to get a quick budget estimate before contacting us."
-        />
-        {content}
-            <SmartRecommendationCard recommendation={rec} />
-      </Container>
+    <section className="w-full py-20 bg-white dark:bg-[#050816] transition-all duration-500">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* HEADING */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-600 text-sm font-medium mb-5">
+            Smart Solution Finder
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold mb-5 text-black dark:text-white">
+            Find Your Perfect{" "}
+            <span className="text-blue-600">Solution</span>
+          </h2>
+
+          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto">
+            Answer a few questions and get a smart recommendation with
+            estimated pricing based on your requirements.
+          </p>
+        </div>
+
+        {/* STEP INDICATOR */}
+        <div className="flex items-center justify-center gap-5 mb-12 flex-wrap">
+          {[1, 2, 3, 4].map((item) => (
+            <div
+              key={item}
+              className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-semibold transition-all duration-300 ${
+                step >= item
+                  ? "bg-blue-600 border-blue-600 text-white"
+                  : "border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400"
+              }`}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-white dark:bg-[#0B1220] border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 shadow-xl transition-all duration-500">
+          {/* STEP 1 */}
+          {step === 1 && (
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-bold text-black dark:text-white">
+                  Select Your Service
+                </h3>
+
+                <span className="text-gray-500 dark:text-gray-400">
+                  Step 1 of 4
+                </span>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-5">
+                {serviceOptions.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setService(item.id as ServiceType)}
+                      className={`p-6 rounded-2xl border transition-all duration-300 text-left ${
+                        service === item.id
+                          ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                          : "border-gray-200 dark:border-gray-700 hover:border-blue-400"
+                      }`}
+                    >
+                      <Icon className="w-10 h-10 text-blue-600 mb-4" />
+
+                      <h4 className="font-semibold text-lg text-black dark:text-white">
+                        {item.title}
+                      </h4>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="flex justify-end mt-10">
+                <button
+                  onClick={() => setStep(2)}
+                  className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2"
+                >
+                  Continue
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2 */}
+          {step === 2 && (
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-bold text-black dark:text-white">
+                  Select Project Type
+                </h3>
+
+                <span className="text-gray-500 dark:text-gray-400">
+                  Step 2 of 4
+                </span>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                {[
+                  "Business Website",
+                  "Portfolio Website",
+                  "Landing Page",
+                  "E-Commerce",
+                  "Custom Web App",
+                ].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setProjectType(type)}
+                    className={`p-6 rounded-2xl border transition-all duration-300 text-left ${
+                      projectType === type
+                        ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-gray-200 dark:border-gray-700 hover:border-blue-400"
+                    }`}
+                  >
+                    <h4 className="font-semibold text-lg text-black dark:text-white">
+                      {type}
+                    </h4>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <label className="block mb-3 text-lg font-semibold text-black dark:text-white">
+                  Select Design Style
+                </label>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  {["Static Website", "3D Website"].map((item) => (
+                    <button
+                      key={item}
+                      onClick={() => setDesignType(item)}
+                      className={`p-5 rounded-2xl border transition-all duration-300 text-left ${
+                        designType === item
+                          ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                          : "border-gray-200 dark:border-gray-700 hover:border-blue-400"
+                      }`}
+                    >
+                      <span className="font-semibold text-black dark:text-white">
+                        {item}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-10">
+                <button
+                  onClick={() => setStep(1)}
+                  className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-black dark:text-white inline-flex items-center gap-2"
+                >
+                  <ArrowLeft size={18} />
+                  Back
+                </button>
+
+                <button
+                  onClick={() => setStep(3)}
+                  className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2"
+                >
+                  Continue
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3 */}
+          {step === 3 && (
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-bold text-black dark:text-white">
+                  Select Features
+                </h3>
+
+                <span className="text-gray-500 dark:text-gray-400">
+                  Step 3 of 4
+                </span>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                {[
+                  "AI Integration",
+                  "Deployment",
+                  "SEO",
+                  "Admin Dashboard",
+                  "WhatsApp Integration",
+                  "Hardware",
+                  "Report",
+                  "Chat Booking",
+                ].map((feature) => (
+                  <button
+                    key={feature}
+                    onClick={() => toggleFeature(feature)}
+                    className={`p-5 rounded-2xl border transition-all duration-300 text-left ${
+                      features.includes(feature)
+                        ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-gray-200 dark:border-gray-700 hover:border-blue-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-black dark:text-white">
+                        {feature}
+                      </span>
+
+                      {features.includes(feature) && (
+                        <CheckCircle2 className="text-blue-600" />
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* BUSINESS GROWTH SLIDER */}
+              <div className="mt-12">
+                <div className="flex items-center gap-3 mb-4">
+                  <CalendarClock className="text-blue-600" />
+
+                  <h4 className="text-xl font-bold text-black dark:text-white">
+                    Business Growth Planning
+                  </h4>
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-300 mb-5">
+                  Select how many months you want your business solution
+                  to scale and grow.
+                </p>
+
+                <div className="bg-gray-100 dark:bg-[#111827] rounded-2xl p-6">
+                  <input
+                    type="range"
+                    min="1"
+                    max="24"
+                    value={businessGrowth}
+                    onChange={(e) =>
+                      setBusinessGrowth(Number(e.target.value))
+                    }
+                    className="w-full accent-blue-600"
+                  />
+
+                  <div className="flex justify-between mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    <span>1 Month</span>
+                    <span className="font-bold text-blue-600 text-lg">
+                      {businessGrowth} Months
+                    </span>
+                    <span>24 Months</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-10">
+                <button
+                  onClick={() => setStep(2)}
+                  className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-black dark:text-white inline-flex items-center gap-2"
+                >
+                  <ArrowLeft size={18} />
+                  Back
+                </button>
+
+                <button
+                  onClick={() => setStep(4)}
+                  className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2"
+                >
+                  See Estimate
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 4 */}
+          {step === 4 && (
+            <div>
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 rounded-full bg-blue-600/10 px-5 py-2 text-blue-600 font-medium mb-5">
+                  Recommended Solution
+                </div>
+
+                <h3 className="text-4xl font-bold mb-3 text-black dark:text-white">
+                  {estimate.title}
+                </h3>
+
+                <p className="text-gray-600 dark:text-gray-300">
+                  Estimated pricing based on your selections
+                </p>
+              </div>
+
+              <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div className="rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111827] p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <IndianRupee className="text-blue-600" />
+
+                    <h4 className="text-xl font-bold text-black dark:text-white">
+                      Estimated Cost
+                    </h4>
+                  </div>
+
+                  <div className="text-5xl font-bold text-blue-600 mb-3">
+                    ₹{estimate.min.toLocaleString()} -
+                  </div>
+
+                  <div className="text-3xl font-bold text-black dark:text-white mb-5">
+                    ₹{estimate.max.toLocaleString()}
+                  </div>
+
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Final cost may vary slightly based on advanced
+                    integrations and custom requirements.
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111827] p-8">
+                  <h4 className="text-xl font-bold mb-5 text-black dark:text-white">
+                    Project Details
+                  </h4>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
+                      <span className="text-gray-600 dark:text-gray-300">
+                        Timeline
+                      </span>
+
+                      <span className="font-semibold text-black dark:text-white">
+                        {estimate.timeline}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
+                      <span className="text-gray-600 dark:text-gray-300">
+                        Growth Planning
+                      </span>
+
+                      <span className="font-semibold text-blue-600">
+                        {businessGrowth} Months
+                      </span>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-600 dark:text-gray-300 mb-3">
+                        Included Features
+                      </p>
+
+                      <div className="flex flex-wrap gap-3">
+                        {estimate.features.map((feature) => (
+                          <span
+                            key={feature}
+                            className="px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 text-sm font-medium"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* WHY CHOOSE US */}
+              <div className="mt-14 bg-blue-50 dark:bg-blue-900/10 rounded-3xl p-8 text-center">
+                <h4 className="text-2xl font-bold mb-4 text-black dark:text-white">
+                  Why Choose ShriGyro Technologies?
+                </h4>
+
+                <div className="grid md:grid-cols-3 gap-5 mt-8">
+                  <div className="bg-white dark:bg-[#111827] rounded-2xl p-6">
+                    <h5 className="font-bold text-blue-600 text-xl mb-2">
+                      100%
+                    </h5>
+
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Customer Satisfaction
+                    </p>
+                  </div>
+
+                  <div className="bg-white dark:bg-[#111827] rounded-2xl p-6">
+                    <h5 className="font-bold text-blue-600 text-xl mb-2">
+                      24/7
+                    </h5>
+
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Client Support
+                    </p>
+                  </div>
+
+                  <div className="bg-white dark:bg-[#111827] rounded-2xl p-6">
+                    <h5 className="font-bold text-blue-600 text-xl mb-2">
+                      On-Time
+                    </h5>
+
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Project Delivery
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-10">
+                <button
+                  onClick={() => setStep(3)}
+                  className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-black dark:text-white inline-flex items-center gap-2"
+                >
+                  <ArrowLeft size={18} />
+                  Back
+                </button>
+
+                <a
+                  href="https://wa.me/917411655519"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white px-8 py-4 rounded-xl font-semibold inline-flex items-center gap-2"
+                >
+                  Get Free Consultation
+                  <ArrowRight size={18} />
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

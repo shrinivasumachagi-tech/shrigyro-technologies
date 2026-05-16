@@ -1,0 +1,18 @@
+{
+  "tasks": {
+    "task-1778920427335-pq5frl": {
+      "taskId": "task-1778920427335-pq5frl",
+      "type": "documentation",
+      "description": "Production React Website Upgrade",
+      "priority": "high",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [],
+      "tags": [],
+      "createdAt": "2026-05-16T08:33:47.335Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}

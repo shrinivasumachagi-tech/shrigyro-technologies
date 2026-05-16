@@ -1,0 +1,192 @@
+{
+  "agents": {
+    "agent-1778920491390-z15xk2": {
+      "agentId": "agent-1778920491390-z15xk2",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-05-16T08:34:51.390Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1778920582705-laygla": {
+      "agentId": "agent-1778920582705-laygla",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-05-16T08:36:22.705Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1778920587750-6592bx": {
+      "agentId": "agent-1778920587750-6592bx",
+      "agentType": "tester",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-05-16T08:36:27.750Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1778920599621-85fda1": {
+      "agentId": "agent-1778920599621-85fda1",
+      "agentType": "reviewer",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-05-16T08:36:39.621Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1778920730033-eb6vu3": {
+      "agentId": "agent-1778920730033-eb6vu3",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder"
+      },
+      "createdAt": "2026-05-16T08:38:50.034Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1778923433686-cxflns": {
+      "agentId": "agent-1778923433686-cxflns",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Fix FloatingWhatsAppButton.tsx with modern responsive icon-only WhatsApp UI using Tailwind CSS and TypeScript with number 917411655519"
+      },
+      "createdAt": "2026-05-16T09:23:53.697Z",
+      "model": "haiku",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923465369-ln3cc0": {
+      "agentId": "agent-1778923465369-ln3cc0",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Create advanced dynamic pricing engine with feature-based calculation, timeline multipliers, AI recommendations, and live React TypeScript updates"
+      },
+      "createdAt": "2026-05-16T09:24:25.378Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923478865-buejnf": {
+      "agentId": "agent-1778923478865-buejnf",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Build premium AI-style multi-step Smart Solution Finder wizard with modern animations and responsive design"
+      },
+      "createdAt": "2026-05-16T09:24:38.872Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923488486-yubtn5": {
+      "agentId": "agent-1778923488486-yubtn5",
+      "agentType": "tester",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Test React website responsiveness, TypeScript issues, accessibility, and performance bottlenecks"
+      },
+      "createdAt": "2026-05-16T09:24:48.493Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923711362-qpjuu2": {
+      "agentId": "agent-1778923711362-qpjuu2",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Analyze the React codebase and upgrade FloatingWhatsAppButton.tsx to a production-ready responsive icon-only WhatsApp component using Tailwind CSS and TypeScript."
+      },
+      "createdAt": "2026-05-16T09:28:31.368Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923726899-n6yryc": {
+      "agentId": "agent-1778923726899-n6yryc",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Create a dynamic pricing engine architecture for the React website with feature-based calculations, live updates, and reusable TypeScript utilities."
+      },
+      "createdAt": "2026-05-16T09:28:46.907Z",
+      "model": "opus",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778923734620-by7gov": {
+      "agentId": "agent-1778923734620-by7gov",
+      "agentType": "tester",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Analyze the React project for responsiveness, TypeScript errors, accessibility issues, and performance bottlenecks."
+      },
+      "createdAt": "2026-05-16T09:28:54.629Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    },
+    "agent-1778924102738-2ytjbu": {
+      "agentId": "agent-1778924102738-2ytjbu",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "ollama",
+        "model": "qwen2.5-coder",
+        "task": "Analyze the React project and upgrade FloatingWhatsAppButton.tsx into a production-ready responsive WhatsApp component with icon-only UI, Tailwind CSS, TypeScript support, and smooth animations.",
+        "autoTools": true
+      },
+      "createdAt": "2026-05-16T09:35:02.744Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    }
+  },
+  "version": "3.0.0"
+}

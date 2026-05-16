@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
 const FloatingWhatsAppButton: React.FC = () => {
-  const whatsappNumber = "+917411678188";
+  const whatsappNumber = "7411655519";
   const message = "Hello ShriGyro Technologies, I’m interested in your services.";
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
