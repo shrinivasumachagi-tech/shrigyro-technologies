@@ -41,14 +41,20 @@ const AcademicProjectSolutions: React.FC = () => {
           subtitle="ShriGyro Technologies bridges the gap between theoretical classroom learning and real-world industrial application. We provide a premium, high-tech engineering environment where students can build, test, and deploy production-ready solutions for their final year milestones and research papers."
         />
 
-        {/* Expanded Description Block */}
-        <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600 dark:text-gray-300">
-          <p className="leading-relaxed">
-            We understand that academic projects are the first step toward a professional career. Our team provides end-to-end guidance, ensuring that every student understands the architecture, the code logic, and the hardware integration. Whether you are working on a complex AI model or an IoT-based automation system, we help you deliver excellence.
-          </p>
-          <p className="leading-relaxed">
-            Our delivery model follows industrial R&D standards. This means you don't just get a working project; you get a complete package including clean source code, professional documentation, simulation files, and viva preparation support. We focus on making you technically confident for your project reviews.
-          </p>
+        {/* Concise Impactful Description */}
+        <div className="mb-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="glass p-6 rounded-2xl border-gray-200 dark:border-white/5 bg-white/50 dark:bg-white/5 shadow-lg hover:-translate-y-1 transition-transform">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Industry Standard</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Developed following strict industrial R&D standards with clean architecture and scalable code.</p>
+          </div>
+          <div className="glass p-6 rounded-2xl border-gray-200 dark:border-white/5 bg-white/50 dark:bg-white/5 shadow-lg hover:-translate-y-1 transition-transform">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">End-to-End Guidance</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400">We ensure you thoroughly understand the code logic, hardware integration, and technical implementation.</p>
+          </div>
+          <div className="glass p-6 rounded-2xl border-gray-200 dark:border-white/5 bg-white/50 dark:bg-white/5 shadow-lg hover:-translate-y-1 transition-transform">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Complete Package</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Receive working source code, professional documentation, simulation files, and viva support.</p>
+          </div>
         </div>
 
         <div className="mb-16 p-10 rounded-[2.5rem] bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-2xl shadow-blue-600/20 text-center relative overflow-hidden group">
@@ -126,8 +132,8 @@ const AcademicProjectSolutions: React.FC = () => {
           className="glass p-10 rounded-[3rem] border-electric-blue/20 bg-gradient-to-r from-electric-blue/5 to-cyan/5 text-center"
         >
           <h4 className="text-2xl font-bold font-sora text-gray-900 dark:text-white mb-4">Accelerate Your Engineering Journey</h4>
-          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto font-inter leading-relaxed">
-            From initial research and architecture planning to final code compilation and hardware deployment, our dedicated engineering team ensures your project is flawless. Get professional guidance for your final year submissions with transparent packages.
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto font-inter">
+            Get professional guidance for your final year submissions with transparent packages, production-ready code, and comprehensive deployment support.
           </p>
           <button
             onClick={() =>

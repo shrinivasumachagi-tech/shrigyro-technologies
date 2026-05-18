@@ -9,6 +9,7 @@ interface SectionHeadingProps {
   gradient?: boolean;
   className?: string;
   level?: 1 | 2;
+  centered?: boolean;
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -18,7 +19,9 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   gradient = true,
   className,
   level = 2,
+  centered,
 }) => {
+  if (centered) align = 'center';
   const alignments = {
     left: 'text-left items-start',
     center: 'text-center items-center',

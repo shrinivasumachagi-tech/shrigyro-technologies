@@ -2,8 +2,8 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import emailjs from '@emailjs/browser';
+import Lenis from 'lenis';
 import ScrollToTop from './components/layout/ScrollToTop';
-import IntroLoader from './components/branding/IntroLoader';
 import { BRAND_ASSETS } from './constants/branding';
 
 const HomePage = lazy(() => import('./pages/Home'));
@@ -27,6 +27,29 @@ const PageFallback = () => (
 );
 
 function App() {
+  // Initialize Lenis smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   // Initialize EmailJS on app mount
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -38,15 +61,11 @@ function App() {
       console.log('✓ EmailJS initialized successfully');
     } else {
       console.warn('⚠ EmailJS not fully configured. Missing environment variables.');
-      console.log('Required:');
-      console.log('  - VITE_EMAILJS_PUBLIC_KEY:', publicKey ? '✓' : '✗');
-      console.log('  - VITE_EMAILJS_SERVICE_ID:', serviceId ? '✓' : '✗');
-      console.log('  - VITE_EMAILJS_TEMPLATE_ID:', templateId ? '✓' : '✗');
     }
   }, []);
   return (
     <>
-      <IntroLoader />
+      {/* IntroLoader removed: No intro video or overlay on startup */}
       <ScrollToTop />
       <Toaster
         position="top-right"

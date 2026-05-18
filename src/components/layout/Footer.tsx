@@ -2,6 +2,8 @@ import React from 'react';
 import { Mail, Linkedin, Github } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import { BRAND_ASSETS } from '@/constants/branding';
+import { ParticleBackground } from '@/components/ui/BackgroundAnimations';
+import { useTheme } from '@/context/ThemeContext';
 
 const footerLinks = {
   'Quick Links': [
@@ -20,8 +22,12 @@ const footerLinks = {
 };
 
 const Footer: React.FC = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
+
   return (
     <footer className="relative overflow-hidden border-t border-gray-200 bg-gray-50 pb-10 pt-20 dark:border-white/10 dark:bg-black/40">
+      {isDarkMode && <ParticleBackground id="footer-particles" />}
       <div className="absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-electric-blue/5 blur-[110px]" />
       
       <Container>

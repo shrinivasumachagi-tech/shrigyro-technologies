@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { GlowBackground, ParticleBackground } from '@/components/ui/BackgroundAnimations';
+import { useTheme } from '@/context/ThemeContext';
 
 const steps = [
   {
@@ -89,9 +91,14 @@ const steps = [
 ];
 
 const ProjectDevelopmentFlow: React.FC = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
+
   return (
-    <section id="project-workflow" className="py-24 relative overflow-hidden bg-slate-950">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+    <section id="project-workflow" className={`py-24 relative overflow-hidden transition-colors duration-700 ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
+      <GlowBackground />
+      {isDarkMode && <ParticleBackground id="workflow-particles" />}
+      <div className={`absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none ${isDarkMode ? 'opacity-50' : 'opacity-100'}`}></div>
       <div className="absolute top-1/4 left-0 w-full h-[500px] bg-electric-blue/5 blur-[120px] pointer-events-none" />
 
       <Container className="relative z-10">
@@ -116,9 +123,9 @@ const ProjectDevelopmentFlow: React.FC = () => {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", delay: 0.2 }}
-                    className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-deep-navy border-4 border-electric-blue items-center justify-center z-10 shadow-[0_0_20px_rgba(0,240,255,0.5)]"
+                    className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full border-4 items-center justify-center z-10 ${isDarkMode ? 'bg-deep-navy border-electric-blue shadow-[0_0_20px_rgba(0,240,255,0.5)]' : 'bg-white border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.3)]'}`}
                   >
-                    <span className="text-white font-bold font-sora">{index + 1}</span>
+                    <span className={`font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{index + 1}</span>
                   </motion.div>
 
                   {/* Empty space for alignment */}
@@ -132,7 +139,7 @@ const ProjectDevelopmentFlow: React.FC = () => {
                     transition={{ duration: 0.6, type: "spring" }}
                     className={`w-full md:w-1/2 ${isEven ? 'md:pl-16' : 'md:pr-16'}`}
                   >
-                    <div className={`glass p-8 rounded-3xl border ${step.border} relative group hover:-translate-y-2 transition-transform duration-500 hover:shadow-2xl hover:shadow-electric-blue/10`}>
+                    <div className={`p-8 rounded-3xl border ${step.border} relative group hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl hover:shadow-electric-blue/20 ${isDarkMode ? 'glass bg-white/5' : 'bg-white shadow-[0_10px_40px_rgba(0,0,0,0.05)] border-slate-200'}`}>
                       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                       
                       <div className="relative z-10">
@@ -142,11 +149,11 @@ const ProjectDevelopmentFlow: React.FC = () => {
                           </div>
                           <div>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-electric-blue mb-1 block">Step 0{index + 1}</span>
-                            <h3 className="text-2xl font-bold font-sora text-white">{step.title}</h3>
+                            <h3 className={`text-2xl font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{step.title}</h3>
                           </div>
                         </div>
                         
-                        <p className="text-gray-400 font-inter leading-relaxed mb-6">
+                        <p className={`font-inter leading-relaxed mb-6 ${isDarkMode ? 'text-gray-400' : 'text-slate-600'}`}>
                           {step.description}
                         </p>
 
@@ -154,7 +161,7 @@ const ProjectDevelopmentFlow: React.FC = () => {
                           {step.details.map((detail, i) => (
                             <div key={i} className="flex items-center gap-3">
                               <div className="w-1.5 h-1.5 rounded-full bg-electric-blue" />
-                              <span className="text-sm font-medium text-gray-300">{detail}</span>
+                              <span className={`text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-slate-700'}`}>{detail}</span>
                             </div>
                           ))}
                         </div>

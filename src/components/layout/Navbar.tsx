@@ -50,9 +50,7 @@ const Navbar: React.FC = () => {
           <img
             src={BRAND_ASSETS.navbarLogo}
             alt="ShriGyro Technologies"
-            className="h-9 w-auto max-w-[138px] object-contain drop-shadow-[0_0_0_rgba(37,99,235,0)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_18px_rgba(37,99,235,0.55)] sm:h-11 sm:max-w-[180px] lg:h-12 lg:max-w-[190px]"
-            width="190"
-            height="48"
+            className="h-[60px] w-auto object-contain scale-[1.1] md:scale-[1.2] transition-all duration-700 hover:scale-[1.25] hover:-translate-y-1 hover:drop-shadow-[0_0_35px_rgba(56,189,248,0.9)]"
             loading="eager"
             decoding="async"
           />

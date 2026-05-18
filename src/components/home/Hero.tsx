@@ -1,9 +1,11 @@
 import React, { useRef, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
 import * as THREE from 'three';
-import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Bot, Cpu, Network, Sparkles, Cloud, Activity, CheckCircle } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import { GlowBackground, ParticleBackground } from '@/components/ui/BackgroundAnimations';
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -313,21 +315,48 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
         <canvas ref={canvasRef} className="w-full h-full block" />
       </div>
+      
+      {/* Premium Background Animations */}
+      <GlowBackground />
+      {isDarkMode && <ParticleBackground id="hero-particles" />}
 
-      <div className={`absolute inset-0 z-[1] ${isDarkMode ? 'bg-slate-950/25' : 'bg-white/25'}`} />
+      <div className={`absolute inset-0 z-[1] ${isDarkMode ? 'bg-slate-950/40' : 'bg-white/40'} backdrop-blur-[1px]`} />
 
-      <div className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center justify-center pointer-events-none py-24">
-        <div ref={contentRef} className="text-center flex flex-col items-center max-w-4xl px-6 pointer-events-auto">
+      {/* Floating Tech Indicators */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden hidden md:block">
+        <motion.div animate={{y: [0, -15, 0]}} transition={{duration: 5, repeat: Infinity, ease: "easeInOut"}} className="absolute top-[20%] left-[10%] p-4 glass rounded-2xl text-cyan/70 border-cyan/20">
+          <Bot size={28} />
+        </motion.div>
+        <motion.div animate={{y: [0, 15, 0]}} transition={{duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1}} className="absolute top-[30%] right-[12%] p-4 glass rounded-2xl text-electric-blue/70 border-electric-blue/20">
+          <Cpu size={28} />
+        </motion.div>
+        <motion.div animate={{y: [0, -10, 0]}} transition={{duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2}} className="absolute bottom-[30%] left-[15%] p-4 glass rounded-2xl text-blue-500/70 border-blue-500/20">
+          <Network size={28} />
+        </motion.div>
+        <motion.div animate={{y: [0, 10, 0]}} transition={{duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5}} className="absolute bottom-[25%] right-[15%] p-4 glass rounded-2xl text-purple-500/70 border-purple-500/20">
+          <Cloud size={28} />
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 min-h-[calc(100vh-5rem)] flex items-center justify-center pointer-events-none py-24 pb-48">
+        <div ref={contentRef} className="text-center flex flex-col items-center max-w-5xl px-6 pointer-events-auto">
           
-          <h1 className={`text-5xl md:text-7xl lg:text-[90px] leading-[0.95] font-bold tracking-tighter mb-8 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            Bridging Intelligent Automation, Industrial Innovation & Digital Transformation
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8">
+            <Sparkles size={16} className={isDarkMode ? 'text-electric-blue' : 'text-blue-600'} />
+            <span className="text-sm font-bold tracking-widest uppercase text-gradient">
+              Enterprise AI & Automation
+            </span>
+          </div>
+          
+          <h1 className={`text-5xl md:text-6xl lg:text-[76px] leading-[1.1] font-black tracking-tight mb-8 transition-colors duration-500 ${isDarkMode ? 'text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]' : 'text-slate-900'}`}>
+            Transforming Industries Through <br className="hidden lg:block"/> <span className="text-gradient">Intelligent Automation</span>
           </h1>
           
-          <p className={`text-lg md:text-xl font-normal max-w-2xl leading-relaxed mb-12 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            ShriGyro Technologies builds modern AI automation systems, embedded solutions, smart web platforms, industrial monitoring systems, and intelligent digital infrastructure for startups, industries, and businesses.</p>
-          <p className={`text-lg md:text-xl font-normal max-w-2xl leading-relaxed mb-12 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>From intelligent automation and AI-powered business systems to industrial embedded solutions and scalable web platforms, we help businesses adopt modern technology with practical and affordable innovation.</p>
+          <p className={`text-lg md:text-xl font-medium max-w-3xl leading-relaxed mb-12 transition-colors duration-500 ${isDarkMode ? 'text-gray-300 drop-shadow-sm' : 'text-gray-700'}`}>
+            We build production-ready AI models, robust embedded systems, and scalable enterprise SaaS architectures for visionary industrial leaders.
+          </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-6 z-20 relative">
             <button 
               onClick={() =>
                 window.dispatchEvent(
@@ -339,27 +368,50 @@ const Hero: React.FC = () => {
                   })
                 )
               }
-              className={`rounded-full px-8 py-4 text-sm font-medium hover:scale-105 transition-all duration-300 flex items-center gap-2 shadow-lg ${isDarkMode ? 'bg-electric-blue text-white hover:bg-cyan-500' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+              className={`rounded-full px-10 py-5 text-sm font-bold tracking-wide uppercase hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-lg neon-border ${isDarkMode ? 'bg-slate-900/80 text-white hover:bg-slate-800' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
             >
-              Free Consultation
+              Start Your Project
               <ArrowRight size={18} />
             </button>
             <button 
               onClick={() => navigate('/solutions')}
-              className={`text-sm font-medium hover:opacity-70 transition-opacity flex items-center gap-1 ${isDarkMode ? 'text-electric-blue' : 'text-blue-600'}`}
+              className={`text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity flex items-center gap-2 px-6 py-4 rounded-full ${isDarkMode ? 'text-electric-blue glass hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]' : 'text-blue-600 bg-blue-50'}`}
             >
               Explore Solutions <span>-&gt;</span>
             </button>
           </div>
-
-          <div className="mt-16 flex flex-wrap justify-center gap-6 text-xs font-semibold tracking-widest opacity-60">
-            <span>AI-POWERED</span>
-            <span>/</span>
-            <span>ENTERPRISE-GRADE</span>
-            <span>/</span>
-            <span>CLOUD-NATIVE</span>
-          </div>
         </div>
+      </div>
+
+      {/* Animated Stats Panel */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-20 pointer-events-none">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className={`grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-3xl ${isDarkMode ? 'glass border-white/10' : 'bg-white/80 backdrop-blur-md border border-slate-200 shadow-xl'} pointer-events-auto`}
+        >
+          <div className="flex flex-col items-center justify-center p-3 text-center border-r border-slate-200 dark:border-white/10 last:border-0 md:border-r-0 md:[&:not(:last-child)]:border-r">
+            <CheckCircle className={`mb-2 ${isDarkMode ? 'text-electric-blue' : 'text-blue-600'}`} size={20} />
+            <span className={`text-xl font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>500+</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Projects Delivered</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-3 text-center border-r border-slate-200 dark:border-white/10 last:border-0 md:border-r-0 md:[&:not(:last-child)]:border-r">
+            <Bot className={`mb-2 ${isDarkMode ? 'text-cyan' : 'text-blue-500'}`} size={20} />
+            <span className={`text-xl font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>25+</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">AI Solutions</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-3 text-center border-r border-slate-200 dark:border-white/10 last:border-0 md:border-r-0 md:[&:not(:last-child)]:border-r">
+            <Cpu className={`mb-2 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} size={20} />
+            <span className={`text-xl font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>40+</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Industrial Systems</span>
+          </div>
+          <div className="flex flex-col items-center justify-center p-3 text-center">
+            <Activity className={`mb-2 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} size={20} />
+            <span className={`text-xl font-bold font-sora ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>24/7</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Client Support</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

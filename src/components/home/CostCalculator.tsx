@@ -15,6 +15,7 @@ import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import Button from '@/components/ui/Button';
+import { GlowBackground } from '@/components/ui/BackgroundAnimations';
 
 const projectTypes = [
     { id: 'academic', label: 'Academic Project', icon: Zap, base: 5000 },
@@ -50,6 +51,7 @@ const CostCalculator: React.FC = () => {
     return (
         <section id="cost-calculator" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-deep-navy/40">
             {/* Background decoration */}
+            <GlowBackground />
             <div className="absolute top-0 right-0 w-96 h-96 bg-electric-blue/5 blur-[100px] -mr-48 -mt-48 pointer-events-none" />
 
             <Container>
